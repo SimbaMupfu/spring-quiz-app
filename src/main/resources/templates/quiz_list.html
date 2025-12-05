@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Quiz List</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>Quiz Management</h2>
+
+<div style="text-align:center; margin-bottom: 20px;">
+  <a class="button" th:href="@{/admin/quiz/add}">Add New Quiz</a>
+</div>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Question</th>
+    <th>Actions</th>
+  </tr>
+  <tr th:each="quiz : ${quizzes}">
+    <td th:text="${quiz.id}"></td>
+    <td th:text="${quiz.questionText}"></td>
+    <td>
+      <a class="button" th:href="@{'/admin/quiz/edit/' + ${quiz.id}}">Edit</a>
+      <a class="button" style="background:#d9534f;"
+         th:href="@{'/admin/quiz/delete/' + ${quiz.id}}"
+         onclick="return confirm('Are you sure?');">Delete</a>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
