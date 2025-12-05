@@ -30,4 +30,13 @@ public class QuestionUserDetailsService implements UserDetailsService {
                 .roles(user.getRole())
                 .build();
     }
+
+    public void registerUser(String username, String email, String password, String role) throws Exception{
+        if(users.containsKey(username)){
+            throw new Exception("User already exists");
+        }else{
+            String encodedPassword = passwordEncoder.encode(password);
+            users.put(username, new User(username, email, encodedPassword, role));
+        }
+    }
 }
