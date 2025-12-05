@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Quiz</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="card">
+    <h2>Edit Quiz</h2>
+
+    <form th:action="@{'/admin/quiz/edit/' + ${quiz.id}}" method="post" th:object="${quiz}">
+        <div>
+            <label>Question</label>
+            <input type="text" th:field="*{questionText}" required>
+        </div>
+
+        <div th:each="idx : ${#numbers.sequence(0,3)}">
+            <label>Option [[${idx + 1}]]</label>
+            <input type="text" th:field="*{options[__${idx}__]}" required>
+        </div>
+
+        <div>
+            <label>Correct Answer (0–3)</label>
+            <input type="number" th:field="*{correctAnswer}" min="0" max="3" required>
+        </div>
+
+        <button type="submit">Update Quiz</button>
+    </form>
+</div>
+
+</body>
+</html>
