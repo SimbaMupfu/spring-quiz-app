@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz Result</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="result-box">
+    <h2>Quiz Result</h2>
+
+    <p><strong>Question:</strong> <span th:text="${quiz.questionText}"></span></p>
+    <p><strong>Your Answer:</strong> <span th:text="${userAnswerText}"></span></p>
+    <p><strong>Correct Answer:</strong> <span th:text="${correctAnswerText}"></span></p>
+
+    <h3 class="correct" th:if="${isCorrect}">✔ Correct!</h3>
+    <h3 class="incorrect" th:unless="${isCorrect}">✘ Incorrect</h3>
+
+    <div style="margin-top:20px;">
+        <a class="button" th:href="@{/quiz}">Try Another Quiz</a>
+    </div>
+</div>
+
+</body>
+</html>
